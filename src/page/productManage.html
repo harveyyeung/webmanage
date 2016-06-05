@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+@@include('head.inc')
+<body>
+@@include('nav.inc')
+<section id="main-container">
+	@@include('left-nav.inc')	
+	<section id="min-wrapper">
+		<div id="main-content">
+		  <div class="container-fluid">
+		  	<div class="row">
+			    <div class="col-md-12">
+			        <!--Top header start-->
+			        <h3 class="ls-top-header">产品管理</h3>
+			        <!--Top header end -->
+
+			        <!--Top breadcrumb start -->
+			        <ol class="breadcrumb">
+			            <li><a href="#"><i class="glyphicon glyphicon-home"></i></a></li>
+			            <li class="active">产品管理</li>
+			        </ol>
+			        <!--Top breadcrumb start -->
+			    </div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-box" >
+						<div class="ls-button-group demo-btn">
+	                        <a class="btn btn-success btn-round" href=
+                            'productAdd.html'><i class="fa fa-plus"></i> 添加</a>
+	                        <button class="btn btn-primary btn-round" id="searchbutton"><i class="fa fa-search"></i> 查询</button>
+		                </div>
+					</div>
+                    <div class="panel panel-default" style="display: none;"  id="searchpanel">
+                      <div class="panel-body">
+                        Basic panel example
+                      </div>
+                    </div>
+					<div class="table-responsive ls-table">
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>缩略图</th>
+                                                <th>产品名称</th>
+                                                <th>类型</th>
+                                                <th>价钱(元)</th>
+                                                <th>开始</th>
+                                                <th>截止</th>
+                                                <th>进度</th>
+                                                <th>活动</th>
+                                                <th class="text-center">操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td class="text-center"><img class="img-rounded" style="width: 100px;height: 100px;" src="../images/demo/avatar-80.png"></td>
+                                                <td>山东苹果</td>
+                                                <td>水果</td>
+                                                <td>19.00</td>
+                                                <td>2016-05-06</td>
+                                                <td>2016-07-06</td>
+                                                <td class="ls-table-progress">
+                                                    <div class="progress progress-striped active">
+                                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuetransitiongoal="20" aria-valuenow="20" style="width: 20%;">20%</div>
+                                                    </div>
+                                                </td>
+                                                <td>无</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-xs btn-success" title="查看详情"><i class="fa fa-eye"></i></button>
+                                                    <button class="btn btn-xs btn-warning" title="编辑"><i class="fa fa-pencil-square-o"></i></button>
+                                                    <button class="btn btn-xs btn-danger"  title="删除"><i class="fa fa-minus"></i></button>
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td>2</td>
+                                                <td class="text-center"><img class="img-rounded" style="width: 100px;height: 100px;" src="../images/demo/avatar-80.png"></td>
+                                                <td>山东苹果</td>
+                                                <td>水果</td>
+                                                <td>19.00</td>
+                                                <td>2016-05-06</td>
+                                                <td>2016-07-06</td>
+                                                <td class="ls-table-progress">
+                                                    <div class="progress progress-striped active">
+                                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuetransitiongoal="20" aria-valuenow="20" style="width: 20%;">20%</div>
+                                                    </div>
+                                                </td>
+                                                <td>无</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-xs btn-success" title="查看详情"><i class="fa fa-eye"></i></button>
+                                                    <button class="btn btn-xs btn-warning" title="编辑"><i class="fa fa-pencil-square-o"></i></button>
+                                                    <button class="btn btn-xs btn-danger"  title="删除"><i class="fa fa-minus"></i></button>
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td>3</td>
+                                                <td class="text-center"><img class="img-rounded" style="width: 100px;height: 100px;" src="../images/demo/avatar-80.png"></td>
+                                                <td>山东苹果</td>
+                                                <td>水果</td>
+                                                <td>19.00</td>
+                                                <td>2016-05-06</td>
+                                                <td>2016-07-06</td>
+                                                <td class="ls-table-progress">
+                                                    <div class="progress progress-striped active">
+                                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuetransitiongoal="20" aria-valuenow="20" style="width: 20%;">20%</div>
+                                                    </div>
+                                                </td>
+                                                <td>无</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-xs btn-success" title="查看详情"><i class="fa fa-eye"></i></button>
+                                                    <button class="btn btn-xs btn-warning" title="编辑"><i class="fa fa-pencil-square-o"></i></button>
+                                                    <button class="btn btn-xs btn-danger"  title="删除"><i class="fa fa-minus"></i></button>
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td>4</td>
+                                                <td class="text-center"><img class="img-rounded" style="width: 100px;height: 100px;" src="../images/demo/avatar-80.png"></td>
+                                                <td>山东苹果</td>
+                                                <td>水果</td>
+                                                <td>19.00</td>
+                                                <td>2016-05-06</td>
+                                                <td>2016-07-06</td>
+                                                <td class="ls-table-progress">
+                                                    <div class="progress progress-striped active">
+                                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuetransitiongoal="20" aria-valuenow="20" style="width: 20%;">20%</div>
+                                                    </div>
+                                                </td>
+                                                <td>无</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-xs btn-success" title="查看详情"><i class="fa fa-eye"></i></button>
+                                                    <button class="btn btn-xs btn-warning" title="编辑"><i class="fa fa-pencil-square-o"></i></button>
+                                                    <button class="btn btn-xs btn-danger"  title="删除"><i class="fa fa-minus"></i></button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+				</div>
+			</div>
+		  </div>
+		</div>
+	 </section>
+</section>
+<script src="../js/common.js"></script>
+<script src="../js/productManage.js"></script>
+</body>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+@@include('head.inc')
+<body>
+@@include('nav.inc')
+<section id="main-container">
+	@@include('left-nav.inc')	
+	<section id="min-wrapper">
+		<div id="main-content">
+		 <div class="container-fluid">
+			<div class="row">
+			    <div class="col-md-12">
+			        <!--Top header start-->
+			        <h3 class="ls-top-header">Dashboard</h3>
+			        <!--Top header end -->
+
+			        <!--Top breadcrumb start -->
+			        <ol class="breadcrumb">
+			            <li><a href="#"><i class="fa fa-home"></i></a></li>
+			            <li class="active">Dashboard</li>
+			        </ol>
+			        <!--Top breadcrumb start -->
+			    </div>
+			</div>
+			<!-- Main Content Element  Start-->
+			<div class="row">
+			    <div class="col-md-9">
+			        <div class="memberBox">
+			            <div class="memberBox-header">
+			                <h5>Logged In Member</h5>
+			            </div>
+			            <div id="realTimeChart" class="flotChartRealTime widgetRealTime" style="padding: 0px; position: relative;">
+
+			            <canvas class="flot-base" width="1597" height="330" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 1065px; height: 220px;"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; top: 209px; left: 12px; text-align: right;">0</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 141px; left: 6px; text-align: right;">50</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 73px; left: 0px; text-align: right;">100</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 5px; left: 0px; text-align: right;">150</div></div></div><canvas class="flot-overlay" width="1597" height="330" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 1065px; height: 220px;"></canvas></div>
+			            <div class="memberBox-details">
+			                <ul>
+			                    <li>
+			                        <div class="memberBox-title">
+			                            <i class="fa fa-users"></i>
+			                            <h4>Member</h4>
+			                        </div>
+			                        <div class="memberBox-value up"><i class="fa fa-user"></i> <span>4250</span></div>
+			                    </li>
+			                    <li>
+			                        <div class="memberBox-title">
+			                            <i class="fa fa-eye"></i>
+			                            <h4>Visitor</h4>
+			                        </div>
+			                        <div class="memberBox-value down"><i class="fa fa-flag"></i> <span>9050</span></div>
+			                    </li>
+			                    <li>
+			                        <div class="memberBox-title">
+			                            <i class="fa fa-shopping-cart"></i>
+			                            <h4>Sales</h4>
+			                        </div>
+			                        <div class="memberBox-value up"><i class="fa  fa-money"></i> <span>50250</span></div>
+			                    </li>
+			                </ul>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+		 </div>
+		</div>
+	 </section>
+</section>
+<script src="../js/common.js"></script>
+<script src="../js/index.js"></script>
+</body>
