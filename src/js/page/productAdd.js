@@ -3,39 +3,38 @@ require('common/fileinput.js');
 require('common/summernote.js');
 require('common/jquery.datetimepicker.js');
 
-//jQuery(document).ready(function($) {
+jQuery(document).ready(function($) {
     pageinit(); 
-//});
+});
 
 function pageinit(){
-     $("#imagefile").fileinput({
-        language:'zh',
-        showCaption: true,
-        browseClass: "btn btn-ls",
-        uploadUrl:"http://localhost:3000/harvey/v1/secret/product/initfile",
-        showUpload: true,
-        slugCallback: function(filename) {
-            return filename.replace('(', '_').replace(']', '_');
-        }
+    $("#saveProduct").click(function(){$('#searchpanel').toggle();
+      saveProduct();
     });
-
+    $("#imagefile").fileinput({
+     'language':'zh',
+     'showUpload':false,
+     'allowedFileExtensions': ["jpg", "png", "gif"],
+      'allowedFileTypes':['image']
+   });
+   
     
-   $('#date_timepicker_start').datetimepicker({
+   $('#begintime').datetimepicker({
 
         onShow:function( ct ){
             this.setOptions({
-                maxDate:$('#date_timepicker_end').val()?$('#date_timepicker_end').val():false
+                maxDate:$('#endtime').val()?$('#endtime').val():false
             })
         },
         lang:"ch"
         /*format:'Y/m/d',
          timepicker:false*/
     });
-    $('#date_timepicker_end').datetimepicker({
+    $('#endtime').datetimepicker({
 
         onShow:function( ct ){
             this.setOptions({
-                minDate:$('#date_timepicker_start').val()?$('#date_timepicker_start').val():false
+                minDate:$('#begintime').val()?$('#begintime').val():false
             })
         },
         lang:"ch"
@@ -52,3 +51,31 @@ function pageinit(){
 }
 
 
+function saveProduct(){
+    var formdata=new FormData();
+    formdata.append("file",$("#imagefile")[0].files[0]);
+    formdata.append("productname","123");
+   
+   $.ajax({
+     url:'http://localhost:3000/harvey/v1/secret/product/add',
+     type: 'POST',
+     data: formdata,
+     dataType: 'json',
+     cache: false,
+     contentType: false,
+     processData: false,
+     success: function(data){
+      if(200 === data.code) {
+        $("#imgShow").attr('src', data.msg.url);
+        $("#spanMessage").html("上传成功");
+      } else {
+        $("#spanMessage").html("上传失败");
+      }
+      console.log('imgUploader upload success, data:', data);
+     },
+     error: function(){
+      $("#spanMessage").html("与服务器通信发生错误");
+    }
+   });
+
+}
