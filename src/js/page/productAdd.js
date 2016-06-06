@@ -54,9 +54,19 @@ function pageinit(){
 function saveProduct(){
     var formdata=new FormData();
     formdata.append("file",$("#imagefile")[0].files[0]);
-    formdata.append("productname","123");
-   
-   $.ajax({
+    formdata.append("name",$("#productName").val());
+    formdata.append("categoryno",$("#categoryno").val());
+    formdata.append("subclassno",$("#subclassno").val());
+    formdata.append("price",$("#price").val());
+    formdata.append("pcount",$("#count").val());
+    formdata.append("activityid",$("#activityid").val());
+    formdata.append("begintime",$("#begintime").val());
+    formdata.append("endtime",$("#endtime").val());
+    formdata.append("provinceno",$("#provinceno").val());
+    formdata.append("cityno",$("#cityno").val());
+    formdata.append("address",$("#address").val());
+    formdata.append("abstract",$("#abstract").val());
+   $.ajax({ 
      url:'http://localhost:3000/harvey/v1/secret/product/add',
      type: 'POST',
      data: formdata,
