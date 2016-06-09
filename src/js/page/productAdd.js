@@ -45,10 +45,49 @@ function pageinit(){
         height: 400,                 // set editor height
         minHeight: 400,             // set minimum height of editor
         maxHeight: null,             // set maximum height of editor
-        focus: true                 // set focus to editable area after initializing summernote
-
+        focus: true ,                 // set focus to editable area after initializing summernote
+        onImageUpload: function(files, editor, $editable) {
+          sendFile(files[0],editor,$editable);
+        }
     });
 }
+function sendFile(file, editor, $editable){
+var filename = false;
+try{
+filename = file['name'];
+} catch(e){filename = false;}
+if(!filename){$(".note-alarm").remove();}
+//以上防止在图片在编辑器内拖拽引发第二次上传导致的提示错误
+var ext = filename.substr(filename.lastIndexOf("."));
+ext = ext.toUpperCase();
+var timestamp = new Date().getTime();
+var name = timestamp+"_"+$("#summernote").attr('aid')+ext;
+//name是文件名，自己随意定义，aid是我自己增加的属性用于区分文件用户
+data = new FormData();
+data.append("file", file);
+data.append("key",name);
+data.append("token",$("#summernote").attr('token'));
+$.ajax({
+data: data,
+type: "POST",
+url: "http://upload.qiniu.com",
+cache: false,
+contentType: false,
+processData: false,
+success: function(data) {
+//data是返回的hash,key之类的值，key是定义的文件名
+editor.insertImage($editable, $("#summernote").attr('url-head')+data['key']);
+//url-head是自己七牛云的domain
+$(".note-alarm").html("上传成功,请等待加载");
+setTimeout(function(){$(".note-alarm").remove();},3000);
+},
+error:function(){
+$(".note-alarm").html("上传失败");
+setTimeout(function(){$(".note-alarm").remove();},3000);
+}
+});
+}
+
 
 
 function saveProduct(){
