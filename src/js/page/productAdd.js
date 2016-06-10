@@ -9,17 +9,21 @@ jQuery(document).ready(function($) {
 
 var publicurl="http://localhost:3000";
 function pageinit(){
-    $("#saveProduct").click(function(){$('#searchpanel').toggle();
+    $("#saveProduct").click(function(){
       saveProduct();
     });
+    $("#saveProductDesc").click(function(){
+      //$('#searchpanel').toggle();
+      saveProductDesc();
+    });
+    
     $("#imagefile").fileinput({
      'language':'zh',
      'showUpload':false,
      'allowedFileExtensions': ["jpg", "png", "gif"],
       'allowedFileTypes':['image']
    });
-   
-    
+
    $('#begintime').datetimepicker({
 
         onShow:function( ct ){
@@ -46,59 +50,115 @@ function pageinit(){
         height: 400,                 // set editor height
         minHeight: 400,             // set minimum height of editor
         maxHeight: null,             // set maximum height of editor
-<<<<<<< HEAD
         focus: true ,                 // set focus to editable area after initializing summernote
         onImageUpload: function(files, editor, $editable) {
           sendFile(files[0],editor,$editable);
-=======
-        focus: true,             // set focus to editable area after initializing summernote
-        onImageUpload: function(files, editor, $editable) {
-         sendFile(files[0],editor,$editable);
->>>>>>> 1222ranran@163.com/master
         }
     });
+    $("#provinceno").change(initCity);
+    $("#cityno").change(initCounty);
+    $("#categoryno").change(initSubclass);
+    initCategory();
 }
+
+function initCity(event){
+   var proviceid=$(this).val();
+   if(proviceid==0){return;}
+    $.ajax({
+        url:'http://localhost:3000/harvey/v1/city',
+        type :'get',
+        contentType :"application/json",
+        cache : false,
+        data:{proviceid:proviceid},
+        dataType : 'json',
+        success:function(res){
+        if(res.result.code='200'&&res.list.length>0){
+            var citys=res.list;
+            var tablehtml='<option value="0">--地级市--</option>';
+            for (var i = 0;i<citys.length;i++) {
+                    var city=citys[i];
+                     tablehtml+='<option value="'+city.city_id+'">'+city.city_name+'</option>';
+            }
+            $("#cityno").html(tablehtml);
+        }
+        }
+    })
+}
+
+
+function initCounty(event){
+   var cityid=$(this).val();
+   if(cityid==0){return;}
+    $.ajax({
+        url:'http://localhost:3000/harvey/v1/county',
+        type :'get',
+        contentType :"application/json",
+        cache : false,
+        data:{cityid:cityid},
+        dataType : 'json',
+        success:function(res){
+        if(res.result.code='200'&&res.list.length>0){
+            var countys=res.list;
+            var tablehtml='<option value="0">--县级市--</option>';
+            for (var i = 0;i<countys.length;i++) {
+                    var county=countys[i];
+                     tablehtml+='<option value="'+county.county_id+'">'+county.county_name+'</option>';
+            }
+            $("#countyno").html(tablehtml);
+        }
+    
+        }
+    })
+}
+
+function initCategory(){
+    $.ajax({
+        url:'http://localhost:3000/harvey/v1/categoryno',
+        type :'get',
+        contentType :"application/json",
+        cache : false,
+        dataType : 'json',
+        success:function(res){
+        if(res.result.code='200'&&res.list.length>0){
+            var categorys=res.list;
+            var tablehtml='<option value="0">--产品类型--</option>';
+            for (var i = 0;i<categorys.length;i++) {
+                    var category=categorys[i];
+                     tablehtml+='<option value="'+category.id+'">'+category.category_name   +'</option>';
+            }
+            $("#categoryno").html(tablehtml);
+        }
+        }
+    })
+}
+
+
+function initSubclass(event){
+   var categoryid=$(this).val();
+   if(categoryid==0){return;}
+    $.ajax({
+        url:'http://localhost:3000/harvey/v1/subclassno',
+        type :'get',
+        contentType :"application/json",
+        cache : false,
+        data:{categoryid:categoryid},
+        dataType : 'json',
+        success:function(res){
+        if(res.result.code='200'&&res.list.length>0){
+            var subclasses=res.list;
+            var tablehtml='<option value="0">--产品子类型--</option>';
+            for (var i = 0;i<subclasses.length;i++) {
+                    var subclass=subclasses[i];
+                     tablehtml+='<option value="'+subclass.id+'">'+subclass.content+'</option>';
+            }
+            $("#subclassno").html(tablehtml);
+        }
+    
+        }
+    })
+}
+
 function sendFile(file, editor, $editable){
-<<<<<<< HEAD
-var filename = false;
-try{
-filename = file['name'];
-} catch(e){filename = false;}
-if(!filename){$(".note-alarm").remove();}
-//以上防止在图片在编辑器内拖拽引发第二次上传导致的提示错误
-var ext = filename.substr(filename.lastIndexOf("."));
-ext = ext.toUpperCase();
-var timestamp = new Date().getTime();
-var name = timestamp+"_"+$("#summernote").attr('aid')+ext;
-//name是文件名，自己随意定义，aid是我自己增加的属性用于区分文件用户
-data = new FormData();
-data.append("file", file);
-data.append("key",name);
-data.append("token",$("#summernote").attr('token'));
-$.ajax({
-data: data,
-type: "POST",
-url: "http://upload.qiniu.com",
-cache: false,
-contentType: false,
-processData: false,
-success: function(data) {
-//data是返回的hash,key之类的值，key是定义的文件名
-editor.insertImage($editable, $("#summernote").attr('url-head')+data['key']);
-//url-head是自己七牛云的domain
-$(".note-alarm").html("上传成功,请等待加载");
-setTimeout(function(){$(".note-alarm").remove();},3000);
-},
-error:function(){
-$(".note-alarm").html("上传失败");
-setTimeout(function(){$(".note-alarm").remove();},3000);
-}
-});
-}
-
-=======
->>>>>>> 1222ranran@163.com/master
-
     var filename = false;
     try{
     filename = file['name'];
@@ -142,7 +202,7 @@ setTimeout(function(){$(".note-alarm").remove();},3000);
     }
     });
 }
-
+var productid;
 function saveProduct(){
     var formdata=new FormData();
     formdata.append("file",$("#imagefile")[0].files[0]);
@@ -168,6 +228,7 @@ function saveProduct(){
      processData: false,
      success: function(data){
       if(200 === data.result.code) {
+          productid=data.productid;
        $("#productInfo").hide();
        $("#productDecs").show();
       } else {
@@ -182,7 +243,40 @@ function saveProduct(){
 
 }
 
-
+ function saveProductDesc(){
+    // var formdata=new FormData();
+    var description=  $('.summernote').code();
+    // if (description.length<=0) {
+    //     alert('contents is empty');
+    //  }
+    alert(description);
+    // formdata.append("context",description);
+    // formdata.append("productid",productid);
+ 
+  $.ajax({ 
+     url:'http://localhost:3000/harvey/v1/secret/product/addDescription',
+     type: 'POST',
+     data:  JSON.stringify({
+                    productid:productid, context :description
+                }),
+     dataType: 'json',
+     cache: false,
+    contentType: 'application/json',
+     processData: false,
+     success: function(data){
+      if(200 === data.result.code) {
+        alert("保存成功");
+        window.location.href="productManage.html";
+      } else {
+      
+      }
+      console.log('product add success, data:', data);
+     },
+     error: function(){
+      $("#spanMessage").html("与服务器通信发生错误");
+    }
+  });
+ }
 
     //检查参数
         function checkeParam(){
