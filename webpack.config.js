@@ -66,7 +66,8 @@ module.exports = {
         alias: {
             jquery: srcDir + "/js/lib/jquery-2.1.1.min.js",
             common: srcDir + "/js/common",
-            page: srcDir + "/js/page"
+            page: srcDir + "/js/page",
+            libs: srcDir + "/js/lib"
         }
     },
     plugins: [
