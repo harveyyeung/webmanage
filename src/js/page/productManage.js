@@ -1,20 +1,37 @@
 require('common/common.js');
+var utils=require('libs/utils.js');
 jQuery(document).ready(function($) {
    $("#searchbutton").click(function(){$('#searchpanel').toggle();
   
    });
-
+   $("#searchProduct").click(function(){
+      getProduct();
+   });
     getProduct();
 });
 
 var publicurl="http://localhost:3000";
 function getProduct(){
+   var params={};
+   var sProductName=$("#sProductName").val();
+   if(utils.getCheck.checkString(sProductName)){
+     params.sProductName=sProductName;
+   }
+    var sProductState=$("#sProductState").val();
+   if(sProductState!=0){
+     params.sProductState=sProductState;
+   }
+   var  sProvinceno=$("#sProvinceno").val();
+   if(sProvinceno!=0){
+     params.sProvinceno=sProvinceno;
+   }
    
    $.ajax({
      url:'http://localhost:3000/harvey/v1/product/list',
      type :'get',
      contentType :"application/json",
      cache : false,
+     data:params,
      dataType : 'json',
      success:function(res){
       if(res.result.code='200'&&res.products.length>0){
@@ -26,7 +43,8 @@ function getProduct(){
                 tablehtml+="<td>"+product.id+"</td>";
                 tablehtml+='<td class="text-center"><img class="img-rounded" style="width: 100px;height: 100px;" src="'+product.url.replace(/public/,publicurl)+'"></td>';
                 tablehtml+='<td>'+product.name+'</td>';
-                tablehtml+='<td>'+product.categoryno+'</td>';
+                tablehtml+='<td>'+product.categoryname+'</td>';
+                 tablehtml+='<td>'+product.subclassname+'</td>';
                 tablehtml+='<td>'+product.price+'</td>';
                 tablehtml+='<td>'+product.begintime+'</td>';
                 tablehtml+='<td>'+product.endtime+'</td>';
