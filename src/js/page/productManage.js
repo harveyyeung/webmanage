@@ -34,7 +34,7 @@ function getProduct(){
      data:params,
      dataType : 'json',
      success:function(res){
-      if(res.result.code='200'&&res.products.length>0){
+      if(res.result.code=='200'&&res.products.length>0){
            var products=res.products;
            var tablehtml="";
            for (var i = 0;i<products.length;i++) {

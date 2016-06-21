@@ -147,7 +147,7 @@ gulp.task("build-js", ['fileinclude'], function(callback) {
 });
 
 //发布
-gulp.task('default', ['connect', 'fileinclude', 'md5:css', 'md5:js', 'open']);
+// gulp.task('default', ['connect', 'fileinclude', 'md5:css', 'md5:js', 'open']);
 
 //开发
-gulp.task('dev', ['connect', 'copy:images','copyplug', 'copyfonts','fileinclude', 'lessmin', 'build-js', 'watch', 'open']);
+gulp.task('default', ['connect', 'copy:images','copyplug', 'copyfonts','fileinclude', 'lessmin', 'build-js', 'watch', 'open']);

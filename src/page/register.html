@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,23 +18,33 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
+    <!-- iOS webapp icons -->
+    <!--<link rel="apple-touch-icon-precomposed" href="assets/images/ios/fickle-logo-72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/ios/fickle-logo-72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/ios/fickle-logo-114.png" />-->
 
-    <title>四季农田</title>
-    <link rel="stylesheet" href="../css/style.min.css">
+    <!-- TODO: Add a favicon -->
+    <!--<link rel="shortcut icon" href="assets/images/ico/fab.ico">-->
 
+    <!--Page loading plugin Start -->
+    <!--<link rel="stylesheet" href="assets/css/plugins/pace.css">-->
+    <!--<script src="assets/js/pace.min.js"></script>-->
+    <!--Page loading plugin End   -->
 
-    <!-- Plugin Css Put Here
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Plugin Css Put Here -->
+    <!--<link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/plugins/bootstrap-switch.min.css">
     <link rel="stylesheet" href="assets/css/plugins/ladda-themeless.min.css">
 
     <link href="assets/css/plugins/humane_themes/bigbox.css" rel="stylesheet">
     <link href="assets/css/plugins/humane_themes/libnotify.css" rel="stylesheet">
-    <link href="assets/css/plugins/humane_themes/jackedup.css" rel="stylesheet">
- -->
+    <link href="assets/css/plugins/humane_themes/jackedup.css" rel="stylesheet">-->
     <!-- Plugin Css End -->
     <!-- Custom styles Style -->
     <!--<link href="assets/css/style.css" rel="stylesheet">-->
+    
+    <title>四季农田</title>
+    <link rel="stylesheet" href="../css/style.min.css">
     <!-- Custom styles Style End-->
 
     <!-- Responsive Style For-->
@@ -58,40 +69,45 @@
                     <div class="login-content">
                         <div class="login-user-icon">
                             <i class="glyphicon glyphicon-user"></i>
-
+                            <!--<img src="images/login.png" alt="Logo"/>-->
                         </div>
-                        <h3 class="default">四季田园管理系统入口</h3>
+                        <h3>四季田园注册</h3>
                     </div>
 
                     <div class="login-form">
-                        <form id="form-login" action="javascript:void(0)" class="form-horizontal ls_form">
+
+                        <form id="form-register" action="javascript:void(0)" class="form-horizontal ls_form">
                             <div class="input-group ls-group-input">
-                                <input class="form-control" type="text" name="l_phone" id="l_phone" placeholder="手机号">
+                                <input class="form-control" type="text" placeholder="用户名" id="username" name="username">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                             </div>
 
                             <div class="input-group ls-group-input">
-                                <input type="password" placeholder="登陆密码" name="password" id="password"
+                                <input class="form-control" type="text" placeholder="手机号" id="phone" name="phone"> 
+                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                            </div>
+
+
+                            <div class="input-group ls-group-input">
+                                <input type="password" placeholder="输入密码" name="password"  id="password"
                                        class="form-control" value="">
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                             </div>
-
-                            <div class="remember-me">
-                                <input class="switchCheckBox" type="checkbox" checked data-size="mini"
-                                       data-on-text="<i class='fa fa-check'><i>"
-                                       data-off-text="<i class='fa fa-times'><i>">
-                                <span>记住我
-                                </span>
+                            <div class="input-group ls-group-input">
+                                <input type="password" placeholder="再次输入密码" name="repeat-password" id="repassword"
+                                       class="form-control" value="">
+                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                             </div>
-                            <div class="input-group ls-group-input login-btn-box"> 
-                                <button id="loginbutton" class="btn ls-dark-btn ladda-button col-md-12 col-sm-12 col-xs-12" data-style="slide-down">
-                                    <span class="ladda-label"><i class="fa fa-key"></i></span>
+                            <div class="input-group ls-group-input login-btn-box">
+                                <button id="registerbutton" class="btn ls-dark-btn ladda-button col-md-12 col-sm-12 col-xs-12"
+                                        data-style="slide-down">
+                                    <span class="ladda-label">注册</span>
                                 </button>
-                                <a class="forgot-password" href="javascript:void(0)">忘记密码</a>
+
+                                <a class="" href="login.html">已注册直接登录</a>
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -100,17 +116,21 @@
         <span>&#169;</span> Fickle <span class="footer-year">2014</span>
     </p>
 </section>
-
 </body>
 <!--<script src="assets/js/lib/jquery-2.1.1.min.js"></script>
 <script src="assets/js/lib/jquery.easing.js"></script>
-<script src="assets/js/bootstrap-switch.min.js"></script>
-<!--Script for notification start-->
+<script src="assets/js/bootstrap-switch.min.js"></script>-->
+
+<!--Loading button script-->
 <!--<script src="assets/js/loader/spin.js"></script>
-<script src="assets/js/loader/ladda.js"></script>
-<script src="assets/js/humane.min.js"></script>-->
-<!--Script for notification end-->
+<script src="assets/js/loader/ladda.js"></script>-->
+<!--Loading button script-->
+<!--Notification Script-->
+<!--<script src="assets/js/humane.min.js"></script>-->
+<!--Notification Script-->
+
+
+<!--Demo registration Script-->
 <script src="../js/common.js"></script>
-<script src="../js/login.js"></script>
-<!--<script src="assets/js/pages/login.js"></script>-->
+<script src="../js/register.js"></script>
 </html>

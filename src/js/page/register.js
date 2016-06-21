@@ -5,22 +5,23 @@ jQuery(document).ready(function($) {
 });
 
 function pageinit(){
-    $("#loginbutton").click(function(){
-      loginSubmit();
+    $("#registerbutton").click(function(){
+      registerSubmit();
     });
 }
 
 
 
 
-function loginSubmit(){
-
+function registerSubmit(){
     var formdata={};
-    formdata.phone=$("#l_phone").val();
+    formdata.username=$("#username").val();
+    formdata.phone =$("#phone").val();
     formdata.password=$("#password").val();
+    formdata.repassword=$("#repassword").val();
    
    $.ajax({ 
-     url:'http://localhost:3000/harvey/v1/secret/user/login',
+     url:'http://localhost:3000/harvey/v1/secret/user/register',
      type: 'POST',
      data:  JSON.stringify(formdata),
      dataType: 'json',
@@ -29,16 +30,16 @@ function loginSubmit(){
      success: function(data){
       if(200 === data.result.code) {
          window.location.href="index.html";
-           console.log('user login success, data:', data);
       } else {
-          console.log('user login fail, data:', data);
+      
       }
-    
+      console.log('user add success, data:', data);
      },
      error: function(){
       $("#spanMessage").html("与服务器通信发生错误");
      }
    });
 
+} 
 
-}
+
