@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+@@include('head.inc')
+<body>
+@@include('nav.inc')
+<section id="main-container">
+	@@include('left-nav.inc')	
+	<section id="min-wrapper">
+		<div id="main-content">
+		  <div class="container-fluid">
+		  	<div class="row">
+			    <div class="col-md-12">
+			        <!--Top header start-->
+			        <h3 class="ls-top-header">修改产品</h3>
+			        <!--Top header end -->
+
+			        <!--Top breadcrumb start -->
+			        <ol class="breadcrumb">
+			            <li><a href="#"><i class="glyphicon glyphicon-home"></i></a></li>
+                        <li class="active">产品管理</li>
+			            <li class="active">修改产品</li>
+			        </ol>
+			        <!--Top breadcrumb start -->
+			    </div>
+			</div>
+			<div class="row" id="productInfo">
+					<div class="col-lg-6 col-lg-offset-3" >
+						<form class="form-horizontal ls_form ls_form_horizontal" action="javascript:void(0)" id="productform" enctype="multipart/form-data" >
+                                
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">名称</label>
+                                            <div class="col-md-10">
+                                                <input type="text" placeholder="产品名称" name="productName"  id ="productName"  class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                                <label class="col-md-2 control-label">产品类型</label>
+                                                <div class="col-md-10  ls-group-input">
+                                                    <select id="categoryno"  name="categoryno" class="form-control">
+                                                     <option value="0">--产品类型--</option>
+                                                    </select>
+                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                                <label class="col-md-2 control-label">子类型</label>
+                                                <div class="col-md-10  ls-group-input">
+                                                    <select id="subclassno" name="subclassno" class="form-control">
+                                                         <option value="0">--产品子类型--</option>
+                                                    </select>
+                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">价格</label>
+
+                                            <div class="col-md-10">
+                                                <input type="text" id="price" name="price"  class="form-control">
+                                            </div>
+                                        </div>
+                                          <div class="form-group">
+                                            <label class="col-md-2 control-label">数量</label>
+
+                                            <div class="col-md-10">
+                                                <input type="number"  id="count" name="count" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                                <label class="col-md-2 control-label">活动</label>
+                                                <div class="col-md-10  ls-group-input">
+                                                    <select id="activityid" name="activityid" class="form-control">
+                                                          <option value="0">--无--</option>
+                                                    </select>
+                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                                <label class="col-md-2 control-label">销售时间</label>
+                                                <div class="col-md-10  ls-group-input">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <input id="begintime" name="begintime" placeholder="开始时间" class="form-control" type="text">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                           
+                                                            <input id="endtime"  name="endtime"  placeholder="结束时间" class="form-control" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+
+                                         <div class="form-group">
+                                                <label class="col-md-2 control-label">产地</label>
+                                                <div class="col-md-10  ls-group-input">
+                                                    <div class="row ls-group-input">
+                                                        <div class="col-md-4">
+                                                       <select id="provinceno" name="provinceno" class="form-control"><option value="0">省</option><option value="110">北京市</option><option value="120">天津市</option><option value="130">河北省</option><option value="140">山西省</option><option value="150">内蒙古自治区</option><option value="210">辽宁省</option><option value="220">吉林省</option><option value="230">黑龙江省</option><option value="310">上海市</option><option value="320">江苏省</option><option value="330">浙江省</option><option value="340">安徽省</option><option value="350">福建省</option><option value="360">江西省</option><option value="370">山东省</option><option value="410">河南省</option><option value="420">湖北省</option><option value="430">湖南省</option><option value="440">广东省</option><option value="450">广西壮族自治区</option><option value="460">海南省</option><option value="500">重庆市</option><option value="510">四川省</option><option value="520">贵州省</option><option value="530">云南省</option><option value="540">西藏自治区</option><option value="610">陕西省</option><option value="620">甘肃省</option><option value="630">青海省</option><option value="640">宁夏回族自治区</option><option value="650">新疆维吾尔自治区</option></select>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <select id="cityno" name="cityno" class="form-control">
+                                                                <option value="0">--地级市--</option>
+                                                            </select>    
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <select id="countyno" name="countyno" class="form-control">
+                                                               <option value="0">--县级市--</option>
+                                                            </select>    
+                                                        </div>
+                                                    </div>
+                                                     <div class="row">
+                                                        <div class="col-md-12">
+                                                           <input id="address"  name="address"   placeholder="详细地址" class="form-control" type="text">
+                                                        </div>
+                                                     </div>
+                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                                <label class="col-md-2 control-label">产品简介</label>
+                                                <div class="col-md-10  ls-group-input">
+                                                <textarea id="abstract" name="abstract" class="form-control" id="bio1" name="bio1"
+                                                          placeholder="简介请保持在50字以内"></textarea>
+                                 
+                                                </div>
+                                        </div>
+                                         <div class="form-group">
+                                            <label class="col-md-2 control-label">
+                                             封面图片
+                                            </label>
+                                             <div class="col-md-10   ls-group-input">
+                                                    <input id="imagefile"  name="imagefile"  type="file" class="file" multiple=false accept="image/*" data-preview-file-type="['jpg', 'png','gif']" >
+                                        </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-offset-2 col-lg-10 text-center">
+                                                <button class="btn btn-lg btn-primary" id="saveProduct">下一步</button>
+                                            </div>
+                                       </div>
+                        </form>
+                    </div>
+			</div>
+      <div class="row" id="productDecs" style="display:none">
+                <div class="col-lg-10" >
+                      <form class="form-horizontal ls_form ls_form_horizontal"  enctype="multipart/form-data" >
+                              <div class="form-group">
+                                      <label class="col-md-2 control-label">详细描述</label>
+                                     
+                              </div>
+                               <div class="form-group">
+                                      <div class="col-md-10 pull-right">
+                                            <div class="summernote">
+                                              输入图文
+                                             </div>
+                                      </div>           
+                              </div>
+                       </form>
+                 </div> 
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10 text-center">
+                        <button class="btn btn-lg btn-primary" id="saveProductDesc">保存</button>
+                    </div>
+                 </div>         
+        </div>
+		  </div>
+		</div>
+	 </section>
+</section>
+<script src="../js/common.js"></script>
+<script src="../js/productAdd.js"></script>
+</body>

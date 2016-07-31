@@ -56,8 +56,8 @@ function getProduct(){
                  tablehtml+='<td>'+product.activityid+'</td>';
                 tablehtml+='<td class="text-center">'+
                 '<button class="btn btn-xs btn-success" title="查看详情"><i class="fa fa-eye"></i></button>'+
-                '<button class="btn btn-xs btn-warning" title="编辑"><i class="fa fa-pencil-square-o"></i></button>'+
-                '<button class="btn btn-xs btn-danger"  title="删除"><i class="fa fa-minus"></i></button>'+
+                '<button class="btn btn-xs btn-warning" title="编辑" onclick="editProductDetail(\''+product.id+'\')"><i class="fa fa-pencil-square-o"></i></button>'+
+                '<button class="btn btn-xs btn-danger"  title="下架"><i class="fa fa-minus"></i></button>'+
                 '</td>'+
                 '</tr>';
            }
@@ -68,4 +68,7 @@ function getProduct(){
      }
    })
 
+}
+window.editProductDetail=function(productid){
+  window.location.href="productAdd.html?productid="+productid;
 }
