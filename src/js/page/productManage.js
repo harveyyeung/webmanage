@@ -70,5 +70,5 @@ function getProduct(){
 
 }
 window.editProductDetail=function(productid){
-  window.location.href="productAdd.html?productid="+productid;
+  window.location.href="productEdit.html?productid="+productid;
 }
