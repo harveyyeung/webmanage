@@ -32,8 +32,6 @@ function pageinit(){
             })
         },
         lang:"ch"
-        /*format:'Y/m/d',
-         timepicker:false*/
     });
     $('#endtime').datetimepicker({
 

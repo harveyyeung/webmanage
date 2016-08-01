@@ -35,10 +35,15 @@ function pageinit(productid){
             })
         },
         lang:"ch"
-        /*format:'Y/m/d',
-         timepicker:false*/
     });
-
+    $('#endtime').datetimepicker({
+            onShow:function( ct ){
+                this.setOptions({
+                    minDate:$('#begintime').val()?$('#begintime').val():false
+                })
+            },
+            lang:"ch"
+        });
     $('.summernote').summernote({
         height: 400,                 // set editor height
         minHeight: 400,             // set minimum height of editor
@@ -70,25 +75,11 @@ function initProductInfo(productid){
             $("#price").val(product.price);
             $("#count").val(product.pcount);
             $("#begintime").val(product.begintime);
-            //$("#endtime").val(product.endtime);
-            $('#endtime').datetimepicker({
-
-                onShow:function( ct ){
-                    this.setOptions({
-                        minDate:$('#begintime').val()?$('#begintime').val():false
-                    })
-                },
-                lang:"ch",
-                value:product.endtime
-            });
-            $("#provinceno").val(product.provice_name);
+            $("#endtime").val(product.endtime);
+            $("#provinceno option[value="+product.provinceno+"]").attr("selected", true);
             $("#cityno").val(product.city_name);
             $("#countyno").val(product.endtime);
             $("#address").val(product.address);
-
-                      
-
-        
         }
         }
     })
