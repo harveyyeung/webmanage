@@ -291,9 +291,6 @@ function saveProduct(){
             var cityno=$("#cityno").val();
             var address=$("#address").val();
             var abstract=$("#abstract").val();
-         
-            
-      
             if(null == file || undefined == file){
                 msg = "请设置产品封面" ;
                 $("#suit_cover_msg").html(msg) ;  

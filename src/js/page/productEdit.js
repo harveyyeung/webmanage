@@ -9,7 +9,7 @@ jQuery(document).ready(function($) {
     pageinit(productid); 
 });
 
-var publicurl="http://localhost:3000";
+var publicurl="http://localhost:3000/";
 function pageinit(productid){
     alert(productid);
     $("#saveProduct").click(function(){
@@ -20,12 +20,12 @@ function pageinit(productid){
       saveProductDesc();
     });
     
-    $("#imagefile").fileinput({
-     'language':'zh',
-     'showUpload':false,
-     'allowedFileExtensions': ["jpg", "png", "gif"],
-      'allowedFileTypes':['image']
-   });
+//     $("#imagefile").fileinput({
+//      'language':'zh',
+//      'showUpload':false,
+//      'allowedFileExtensions': ["jpg", "png", "gif"],
+//       'allowedFileTypes':['image']
+//    });
 
    $('#begintime').datetimepicker({
 
@@ -80,6 +80,18 @@ function initProductInfo(productid){
             $("#cityno").val(product.city_name);
             $("#countyno").val(product.endtime);
             $("#address").val(product.address);
+            $("#abstract").val(product.abstract);
+            $('.summernote').code(product.content);
+           var imageurl=product.url.replace(/public/, publicurl);
+           $("#imagefile").fileinput( {
+                'language':'zh',
+                'showUpload':false,
+                'allowedFileExtensions': ["jpg", "png", "gif"],
+                'allowedFileTypes':['image'],
+                'initialPreview': ["<img src='" +imageurl + "' class='file-preview-image' style='width:180px'>" ],
+                'initialPreviewConfig': [{'width':'180px'}]
+            });
+            
         }
         }
     })
