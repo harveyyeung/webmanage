@@ -57,7 +57,6 @@ function pageinit(productid){
 }
 
 function initProductInfo(productid){
-   
    if(productid==null){return;}
     $.ajax({
         url:'http://localhost:3000/harvey/v1/product/query',
@@ -69,6 +68,7 @@ function initProductInfo(productid){
         success:function(res){
         if(res.result.code='200'&&res.products.length>0){
             var product =res.products[0];
+            $("#productId").val(product.id);
             $("#productName").val(product.name);
             $("#categoryno").val(product.categoryname);
             $("#subclassno").val(product.subclassname);
@@ -98,7 +98,74 @@ function initProductInfo(productid){
 }
 
 
+function updateProduct(){
+    var formdata=new FormData();
+    formdata.append("id",$("#productId").val());
+    formdata.append("file",$("#imagefile")[0].files[0]);
+    formdata.append("name",$("#productName").val());
+    formdata.append("categoryno",$("#categoryno").val());
+    formdata.append("subclassno",$("#subclassno").val());
+    formdata.append("price",$("#price").val());
+    formdata.append("pcount",$("#count").val());
+    formdata.append("activityid",$("#activityid").val());
+    formdata.append("begintime",$("#begintime").val());
+    formdata.append("endtime",$("#endtime").val());
+    formdata.append("provinceno",$("#provinceno").val());
+    formdata.append("cityno",$("#cityno").val());
+    formdata.append("address",$("#address").val());
+    formdata.append("abstract",$("#abstract").val());
+    $.ajax({ 
+        url:'http://localhost:3000/harvey/v1/secret/product/update',
+        type: 'POST',
+        data: formdata,
+        dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(data){
+        if(200 === data.result.code) {
+            $("#productInfo").hide();
+            $("#productDecs").show();
+        } else {
+        
+        }
+        console.log('product add success, data:', data);
+        },
+        error: function(){
+        $("#spanMessage").html("与服务器通信发生错误");
+        }
+    });
 
+}
+
+
+ function updateProductDesc(){
+    var description=  $('.summernote').code();
+    var productid=$("#productId").val();
+  $.ajax({ 
+     url:'http://localhost:3000/harvey/v1/secret/product/updateDescription',
+     type: 'POST',
+     data:  JSON.stringify({
+                    productid:productid, context :description
+                }),
+     dataType: 'json',
+     cache: false,
+    contentType: 'application/json',
+     processData: false,
+     success: function(data){
+      if(200 === data.result.code) {
+        alert("保存成功");
+        window.location.href="productManage.html";
+      } else {
+      
+      }
+      console.log('product add success, data:', data);
+     },
+     error: function(){
+      $("#spanMessage").html("与服务器通信发生错误");
+    }
+  });
+ }
 
  function getUrlVars(name) {
         var vars = [], hash;
