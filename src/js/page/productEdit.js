@@ -12,20 +12,14 @@ jQuery(document).ready(function($) {
 var publicurl="http://localhost:3000/";
 function pageinit(productid){
     alert(productid);
-    $("#saveProduct").click(function(){
-      saveProduct();
+    $("#updateProduct").click(function(){
+      updateProduct();
     });
     $("#saveProductDesc").click(function(){
       //$('#searchpanel').toggle();
       saveProductDesc();
     });
     
-//     $("#imagefile").fileinput({
-//      'language':'zh',
-//      'showUpload':false,
-//      'allowedFileExtensions': ["jpg", "png", "gif"],
-//       'allowedFileTypes':['image']
-//    });
 
    $('#begintime').datetimepicker({
 
@@ -53,8 +47,109 @@ function pageinit(productid){
           sendFile(files[0],editor,$editable);
         }
     });
+    $("#provinceno").change(initCity);
+    $("#cityno").change(initCounty);
+    $("#categoryno").change(initSubclass);
+    initCategory();
     initProductInfo(productid);
 }
+function initCategory(){
+    $.ajax({
+        url:'http://localhost:3000/harvey/v1/categoryno',
+        type :'get',
+        contentType :"application/json",
+        cache : false,
+        dataType : 'json',
+        success:function(res){
+        if(res.result.code='200'&&res.list.length>0){
+            var categorys=res.list;
+            var tablehtml='';
+            for (var i = 0;i<categorys.length;i++) {
+                    var category=categorys[i];
+                     tablehtml+='<option value="'+category.id+'">'+category.category_name   +'</option>';
+            }
+            $("#categoryno").html(tablehtml);
+        }
+        }
+    })
+}
+
+
+function initSubclass(event){
+   var categoryid=$(this).val();
+   if(categoryid==0){return;}
+    $.ajax({
+        url:'http://localhost:3000/harvey/v1/subclassno',
+        type :'get',
+        contentType :"application/json",
+        cache : false,
+        data:{categoryid:categoryid},
+        dataType : 'json',
+        success:function(res){
+        if(res.result.code='200'&&res.list.length>0){
+            var subclasses=res.list;
+            var tablehtml='';
+            for (var i = 0;i<subclasses.length;i++) {
+                    var subclass=subclasses[i];
+                     tablehtml+='<option value="'+subclass.id+'">'+subclass.content+'</option>';
+            }
+            $("#subclassno").html(tablehtml);
+        }
+    
+        }
+    })
+}
+
+
+function initCity(event){
+   var proviceid=$(this).val();
+   if(proviceid==0){return;}
+    $.ajax({
+        url:'http://localhost:3000/harvey/v1/city',
+        type :'get',
+        contentType :"application/json",
+        cache : false,
+        data:{proviceid:proviceid},
+        dataType : 'json',
+        success:function(res){
+        if(res.result.code='200'&&res.list.length>0){
+            var citys=res.list;
+            var tablehtml='<option value="0">--地级市--</option>';
+            for (var i = 0;i<citys.length;i++) {
+                    var city=citys[i];
+                     tablehtml+='<option value="'+city.city_id+'">'+city.city_name+'</option>';
+            }
+            $("#cityno").html(tablehtml);
+        }
+        }
+    })
+}
+
+function initCounty(event){
+   var cityid=$(this).val();
+   if(cityid==0){return;}
+    $.ajax({
+        url:'http://localhost:3000/harvey/v1/county',
+        type :'get',
+        contentType :"application/json",
+        cache : false,
+        data:{cityid:cityid},
+        dataType : 'json',
+        success:function(res){
+        if(res.result.code='200'&&res.list.length>0){
+            var countys=res.list;
+            var tablehtml='<option value="0">--县级市--</option>';
+            for (var i = 0;i<countys.length;i++) {
+                    var county=countys[i];
+                     tablehtml+='<option value="'+county.county_id+'">'+county.county_name+'</option>';
+            }
+            $("#countyno").html(tablehtml);
+        }
+    
+        }
+    })
+}
+
 
 function initProductInfo(productid){
    if(productid==null){return;}
@@ -71,7 +166,8 @@ function initProductInfo(productid){
             $("#productId").val(product.id);
             $("#productName").val(product.name);
             $("#categoryno").val(product.categoryname);
-            $("#subclassno").val(product.subclassname);
+            $("#categoryno option[value="+product.categoryno+"]").attr("selected", true);
+            $("#subclassno").html('<option value="'+product.subclassno+'">'+product.subclassname+'</option>');
             $("#price").val(product.price);
             $("#count").val(product.pcount);
             $("#begintime").val(product.begintime);
@@ -82,6 +178,8 @@ function initProductInfo(productid){
             $("#address").val(product.address);
             $("#abstract").val(product.abstract);
             $('.summernote').code(product.content);
+            $("#cityno").html('<option value="'+product.cityno+'">'+product.city_name+'</option>');
+            $("#countyno").html('<option value="'+product.countyno+'">'+product.county_name+'</option>');
            var imageurl=product.url.replace(/public/, publicurl);
            $("#imagefile").fileinput( {
                 'language':'zh',
@@ -100,8 +198,11 @@ function initProductInfo(productid){
 
 function updateProduct(){
     var formdata=new FormData();
+
     formdata.append("id",$("#productId").val());
+    if($("#imagefile")[0].files[0]){
     formdata.append("file",$("#imagefile")[0].files[0]);
+    }
     formdata.append("name",$("#productName").val());
     formdata.append("categoryno",$("#categoryno").val());
     formdata.append("subclassno",$("#subclassno").val());
@@ -112,6 +213,7 @@ function updateProduct(){
     formdata.append("endtime",$("#endtime").val());
     formdata.append("provinceno",$("#provinceno").val());
     formdata.append("cityno",$("#cityno").val());
+    formdata.append("countyno",$("#countyno").val());
     formdata.append("address",$("#address").val());
     formdata.append("abstract",$("#abstract").val());
     $.ajax({ 
@@ -123,7 +225,7 @@ function updateProduct(){
         contentType: false,
         processData: false,
         success: function(data){
-        if(200 === data.result.code) {
+        if(200 === data.code) {
             $("#productInfo").hide();
             $("#productDecs").show();
         } else {

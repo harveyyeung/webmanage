@@ -214,6 +214,7 @@ function saveProduct(){
     formdata.append("endtime",$("#endtime").val());
     formdata.append("provinceno",$("#provinceno").val());
     formdata.append("cityno",$("#cityno").val());
+    formdata.append("countyno",$("#countyno").val());
     formdata.append("address",$("#address").val());
     formdata.append("abstract",$("#abstract").val());
    $.ajax({ 
