@@ -7,6 +7,8 @@ jQuery(document).ready(function($) {
    $("#searchProduct").click(function(){
       getProduct();
    });
+   $("#ptbale").on('click','#productOffBtn',productOffEvent);
+   $("#ptbale").on('click','#productUpBtn',productUpEvent);
     getProduct();
 });
 
@@ -56,10 +58,14 @@ function getProduct(){
                  tablehtml+='<td>'+product.activityid+'</td>';
                 tablehtml+='<td class="text-center">'+
                 '<button class="btn btn-xs btn-success" title="查看详情"><i class="fa fa-eye"></i></button>'+
-                '<button class="btn btn-xs btn-warning" title="编辑" onclick="editProductDetail(\''+product.id+'\')"><i class="fa fa-pencil-square-o"></i></button>'+
-                '<button class="btn btn-xs btn-danger"  title="下架"><i class="fa fa-minus"></i></button>'+
-                '</td>'+
-                '</tr>';
+                '<button class="btn btn-xs btn-warning " title="编辑" onclick="editProductDetail(\''+product.id+'\')"><i class="fa fa-pencil-square-o"></i></button>';
+                if(product.state==1){
+                    tablehtml+='<button class="btn btn-xs btn-danger productOffBtn" id="productOffBtn" date-product="'+product.id+'"  title="下架"><i class="fa  fa-arrow-down"></i></button>';
+                }else if (product.state==2){
+                    tablehtml+='<button class="btn btn-xs btn-primary productUpBtn" id="productUpBtn" date-product="'+product.id+'"  title="上架"><i class="fa  fa-arrow-up"></i></button>';
+                }
+                 tablehtml+= '</td>'+
+                 '</tr>';
            }
            $("#ptbale").html(tablehtml);
 
@@ -68,6 +74,51 @@ function getProduct(){
      }
    })
 
+}
+
+function  productOffEvent(event){
+   var that=this;
+   var productid=$(that).attr("date-product");
+   $.ajax({ 
+     url:'http://localhost:3000/harvey/v1/secret/product/off',
+     type: 'POST',
+     data:  JSON.stringify({productid:productid}),
+     dataType: 'json',
+     contentType: 'application/json',
+     cache: false,
+     success: function(data){
+      if(200 === data.code) {
+            $(that).replaceWith('<button class="btn btn-xs btn-primary" id="productUpBtn" date-product="'+productid+'"  title="下架"><i class="fa fa-arrow-up"></i></button>');
+      } else {
+      
+      }
+     },
+     error: function(){
+      $("#spanMessage").html("与服务器通信发生错误");
+    }
+   });
+}
+function  productUpEvent(event){
+   var that=this;
+   var productid=$(that).attr("date-product");
+   $.ajax({ 
+     url:'http://localhost:3000/harvey/v1/secret/product/up',
+     type: 'POST',
+     data:  JSON.stringify({productid:productid}),
+     dataType: 'json',
+     contentType: 'application/json',
+     cache: false,
+     success: function(data){
+      if(200 === data.code) {
+            $(that).replaceWith('<button class="btn btn-xs btn-danger" id="productOffBtn" date-product="'+productid+'"  title="下架"><i class="fa fa-arrow-down"></i></button>');
+      } else {
+      
+      }
+     },
+     error: function(){
+      $("#spanMessage").html("与服务器通信发生错误");
+    }
+   });
 }
 window.editProductDetail=function(productid){
   window.location.href="productEdit.html?productid="+productid;

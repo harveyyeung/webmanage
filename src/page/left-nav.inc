@@ -52,6 +52,11 @@
     </a>
 </li>
 <li>
+    <a href="baseCollocate.html">
+        <i class="fa fa-envelope-o"></i> <span>基础配置</span><span class="badge badge-red">3</span>
+    </a>
+</li>
+<li>
     <a href="timeline.html">
         <i class="fa fa-clock-o"></i> <span>TimeLine</span>
     </a>

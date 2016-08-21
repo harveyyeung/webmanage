@@ -231,7 +231,6 @@ function updateProduct(){
         } else {
         
         }
-        console.log('product add success, data:', data);
         },
         error: function(){
         $("#spanMessage").html("与服务器通信发生错误");
@@ -261,7 +260,6 @@ function updateProduct(){
       } else {
       
       }
-      console.log('product add success, data:', data);
      },
      error: function(){
       $("#spanMessage").html("与服务器通信发生错误");

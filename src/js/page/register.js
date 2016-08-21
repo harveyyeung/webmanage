@@ -33,7 +33,6 @@ function registerSubmit(){
       } else {
       
       }
-      console.log('user add success, data:', data);
      },
      error: function(){
       $("#spanMessage").html("与服务器通信发生错误");

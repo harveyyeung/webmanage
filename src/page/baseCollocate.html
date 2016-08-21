@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+@@include('head.inc')
+<body>
+@@include('nav.inc')
+<section id="main-container">
+	@@include('left-nav.inc')	
+	<section id="min-wrapper">
+		<div id="main-content">
+		  <div class="container-fluid">
+		  	<div class="row">
+			    <div class="col-md-12">
+			        <!--Top header start-->
+			        <h3 class="ls-top-header">基础设置</h3>
+			        <!--Top header end -->
+
+			        <!--Top breadcrumb start -->
+			        <ol class="breadcrumb">
+			            <li><a href="#"><i class="glyphicon glyphicon-home"></i></a></li>
+                        <li class="active">基础管理</li>
+			        </ol>
+			        <!--Top breadcrumb start -->
+			    </div>
+			</div>
+			<div class="row" id="productInfo">
+					<div class="col-lg-6" >
+						<div class="panel panel-info"">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">产品类型管理</h3>
+                            </div>
+                            <div class="panel-body">
+                                      <div class="form-group">
+                                                
+                                                <label class="col-md-3 control-label">已有产品类型</label>
+                                                <div class="col-md-5 ls-group-input">
+                                                    <select id="categoryno"  name="categoryno" class="form-control">
+                                                    
+                                                    </select>
+                                                </div>
+                                                <div class="ls-button-group demo-btn">
+                                                    <button  class="btn btn-success btn-round" data-toggle="collapse" data-target="#addCategory" aria-expanded="false" id="addCategoryBtn" aria-controls="addCategory"><i class="fa fa-plus"></i> 添加</button>
+                                                    <button class="btn btn-primary btn-round" id="delCategoryBtn"><i class="fa fa-trash-o"></i> 删除</button>
+                                                </div>
+
+                                        
+                                        </div>
+                                        <div class="collapse" id="addCategory">
+                                            <div class="well">
+                                                 <div class="form-group">
+                                                    <label class="col-md-2 control-label">类型名称</label>
+                                                    <div class="col-md-5">
+                                                        <input type="text" placeholder="产品类型" name="categoryName"  id ="categoryName"  class="form-control">
+                                                    </div>
+                                                    <button class="btn  btn-primary" id="saveCategory">保存</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                                <label class="col-md-3 control-label">对应子类型</label>
+                                                <div class="col-md-5  ls-group-input">
+                                                    <select id="subclassno" name="subclassno" class="form-control">
+                                                    </select>
+                                                </div>
+                                                <div class="ls-button-group demo-btn">
+                                                    <button  class="btn btn-success btn-round" data-toggle="collapse" data-target="#addSubclass" id="addSubclassBtn"  aria-expanded="false" aria-controls="addSubclass"><i class="fa fa-plus"></i> 添加</button>
+                                                    <button class="btn btn-primary btn-round" id="delSubclassBtn" ><i class="fa fa-trash-o"></i> 删除</button>
+                                                </div>
+                                        </div>
+                                         <div class="collapse" id="addSubclass">
+                                            <div class="well">
+                                                <div class="form-group  text-center">
+                                                    <label class="col-md-2 control-label">类型名称</label>
+                                                    <div class="col-md-5">
+                                                        <input type="text" placeholder="产品子类" name="subclassName"  id ="subclassName"  class="form-control">
+                                                    </div>
+                                                     <button class="btn  btn-primary" id="saveSubclass">保存</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+			</div>
+
+		  </div>
+		</div>
+	 </section>
+</section>
+<script src="../js/common.js"></script>
+<script src="../js/baseCollocate.js"></script>
+</body>
