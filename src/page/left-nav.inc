@@ -32,7 +32,7 @@
     </a>
 </li>
 <li>
-    <a href="productManage.html">
+    <a href="productManage.html" id="productManage">
         <i class="fa fa-envelope-o"></i> <span>产品管理</span><span class="badge badge-red">3</span>
     </a>
 </li>

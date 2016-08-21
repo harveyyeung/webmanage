@@ -15,11 +15,19 @@ function pageinit(productid){
     $("#updateProduct").click(function(){
       updateProduct();
     });
-    $("#saveProductDesc").click(function(){
+    $("#updateProductDesc").click(function(){
       //$('#searchpanel').toggle();
-      saveProductDesc();
+      updateProductDesc();
     });
-    
+    $("#nextProductDesc").click(function(){
+            $("#productInfo").hide();
+            $("#productDecs").show();
+    });
+    $("#goBackProduct").click(function(){
+            $("#productInfo").show();
+            $("#productDecs").hide();
+    });
+
 
    $('#begintime').datetimepicker({
 
@@ -244,29 +252,29 @@ function updateProduct(){
  function updateProductDesc(){
     var description=  $('.summernote').code();
     var productid=$("#productId").val();
-  $.ajax({ 
-     url:'http://localhost:3000/harvey/v1/secret/product/updateDescription',
-     type: 'POST',
-     data:  JSON.stringify({
-                    productid:productid, context :description
-                }),
-     dataType: 'json',
-     cache: false,
-    contentType: 'application/json',
-     processData: false,
-     success: function(data){
-      if(200 === data.result.code) {
-        alert("保存成功");
-        window.location.href="productManage.html";
-      } else {
-      
-      }
-      console.log('product add success, data:', data);
-     },
-     error: function(){
-      $("#spanMessage").html("与服务器通信发生错误");
-    }
-  });
+    $.ajax({ 
+        url:'http://localhost:3000/harvey/v1/secret/product/updateDescription',
+        type: 'POST',
+        data:  JSON.stringify({
+                        productid:productid, context :description
+                    }),
+        dataType: 'json',
+        cache: false,
+        contentType: 'application/json',
+        processData: false,
+        success: function(data){
+        if(200 === data.code) {
+            alert("保存成功");
+            window.location.href="productManage.html";
+        } else {
+        
+        }
+        console.log('product add success, data:', data);
+        },
+        error: function(){
+        $("#spanMessage").html("与服务器通信发生错误");
+        }
+    });
  }
 
  function getUrlVars(name) {
