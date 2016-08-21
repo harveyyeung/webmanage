@@ -233,7 +233,6 @@ function saveProduct(){
       } else {
       
       }
-      console.log('product add success, data:', data);
      },
      error: function(){
       $("#spanMessage").html("与服务器通信发生错误");
@@ -256,8 +255,7 @@ function saveProduct(){
      url:'http://localhost:3000/harvey/v1/secret/product/addDescription',
      type: 'POST',
      data:  JSON.stringify({
-                    productid:productid, context :description
-                }),
+                    productid:productid, context:description }),
      dataType: 'json',
      cache: false,
     contentType: 'application/json',
@@ -269,7 +267,6 @@ function saveProduct(){
       } else {
       
       }
-      console.log('product add success, data:', data);
      },
      error: function(){
       $("#spanMessage").html("与服务器通信发生错误");

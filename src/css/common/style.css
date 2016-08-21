@@ -2531,11 +2531,11 @@ form.ls_form_dashed input:focus, input.bootbox-input:focus {
     box-shadow: none;
     border-radius: 0;
 }
-
+/*
 form.ls_form input, form.ls_form select, form.ls_form textarea, input.bootbox-input {
     border-radius: 1px;
     outline: none;
-}
+}*/
 
 form.ls_form input:focus,
 form.ls_form input.active,
@@ -2573,11 +2573,11 @@ div.form_view {
 
 
 /*****/
-.form-control{
+/*.form-control{
     border-radius: 1px;
     -moz-border-radius: 1px;
     -webkit-border-radius: 1px;
-}
+}*/
 .message-form .control-label{
     text-align: right;
 }
@@ -6662,12 +6662,12 @@ a.expand:hover{
 /*------------------------------------------------------------------
    ------------------------- PANEL ------------------------------
 -------------------------------------------------------------------*/
-.form-control {
+/*.form-control {
     background-color: rgba(0, 0, 0, 0);
     box-shadow: none;
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
-}
+}*/
 
 .panel .form-control {
     background-color: rgba(0, 0, 0, 0);
@@ -6714,7 +6714,7 @@ a.expand:hover{
     color: #565656;
 }
 
-.panel, .panel-heading {
+/*.panel, .panel-heading {
     border-radius: 0;
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
@@ -6772,6 +6772,7 @@ a.expand:hover{
 .panel > .panel-body {
     background-color: #fafafa;
 }
+*/
 .ls-light-green-progress {
     background-color: #269abc;
 }
@@ -8292,11 +8293,11 @@ p.preview-advance a:hover {
 
 /****/
 
-.btn {
+/*.btn {
     border-radius: 1px;
     -moz-border-radius: 1px;
     -webkit-border-radius: 1px;
-}
+}*/
 
 .popover {
     border-radius: 1px;
